@@ -1,0 +1,112 @@
+<?php
+include 'connect.php';
+?>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GreenCloud</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+  <script type="text/javascript" src="gmaps.js"></script>
+  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="examples.css" />
+  <script type='text/javascript'
+  src='http://code.jquery.com/jquery-2.0.2.js'></script>
+<link rel="stylesheet" type="text/css"
+  href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<script type='text/javascript'
+  src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+  href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+
+  <script type="text/javascript">
+    var map;
+    $(document).ready(function(){
+      map = new GMaps({
+        el: '#map',
+        lat: 37.890998840332,
+        lng: -122.446998596191
+      });
+      map.addMarker({
+        lat: 37.890998840332,
+        lng: -122.446998596191,
+        title: 'Lima',
+        details: {
+          database_id: 42,
+          author: 'HPNeo'
+        },
+        click: function(e){
+          if(console.log)
+            console.log(e);
+          alert('You clicked in this marker');
+        },
+        mouseover: function(e){
+          if(console.log)
+            console.log(e);
+        }
+      });
+       $.ajax({                                      
+      url: 'un.php',                  //the script to call to get data          
+      data: "",                        //you can insert url argumnets here to pass to api.php
+                                       //for example "id=5&parent=6"
+      dataType: 'json',                //data format      
+      success: function(data)          //on recieve of reply
+      {
+
+      
+        $.each(data, function(k, v) {
+    /// do stuff
+          map.addMarker({
+          lat: v.lat,
+          lng: v.lon,
+          title: v.sensor
+           });
+         }); 
+
+      }
+
+    });
+          
+        //var id = data[0];              //get id
+        //var vname = data[1];           //get name
+        //--------------------------------------------------------------------
+        // 3) Update html content
+        //--------------------------------------------------------------------
+        //$('#output').html("<b>id: </b>"+id+"<b> name: </b>"+vname); //Set output element html
+        //recommend reading up on jquery selectors they are awesome 
+        // http://api.jquery.com/category/selectors/
+       
+    });
+
+    
+  </script>
+ <style type="text/css">
+  table{
+      text-align: center;
+      margin: auto;
+      width: 400px;
+
+    }
+    th
+    {
+      text-align: center;
+    }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+   <a class="navbar-brand" href=""><span class="glyphicon glyphicon-home"></span></a>
+</nav>
+<br>
+
+ <hr>
+  
+  <div class="row">
+    <div class="span8">
+      <div id="map"></div>
+    </div>
+    
+      </div>
+  </div>
+</body>
+</html>
