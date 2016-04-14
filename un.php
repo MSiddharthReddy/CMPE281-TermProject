@@ -14,7 +14,7 @@ $conn = new mysqli($servername, $username, $password,$dbnam);
 //} else {
     //echo "Error: " . $sql . "<br>" . $conn->error;
 //}
-$r = "Select * FROM sensor_list";
+$r = "Select * FROM hub_list";
 
 $a = $conn->query($r);
 $rows = array();
@@ -23,7 +23,7 @@ foreach ($a as $row) {
 
 	$lat = $row['lat'];
 	$lon = $row['lon'];
-	$name = $row['Sensor_name'];
+	$name = $row['name'];
 
 	$rows[] =  array("lat" => $lat, "lon" => $lon, "sensor" => $name );
 	# code...
