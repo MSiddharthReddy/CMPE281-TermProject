@@ -15,6 +15,7 @@ VALUES ('$sensor', '$fromat', '$desc', '$url ', '$hub', '$api')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
+     header("Location: sensor.php?id=".$hub);
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

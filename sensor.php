@@ -67,8 +67,8 @@
         $a = $conn->query($r);
           while( $row = mysqli_fetch_array($a) ){
             echo "<tr><td>" . $row['Sensor_name'] . "</td><td>" . $row['Sensor_id'] . "</td><td>" . $row['status'] . "</td>"; 
-            $id = $row['Sensor_name']; //$row['index'] the index here is a field name
-           echo '<td> <a class="btn btn-danger" href="del.php?id='.$id.'" ><span class="glyphicon glyphicon-trash">';
+            $i = $row['Sensor_name']; //$row['index'] the index here is a field name
+           echo '<td> <a class="btn btn-danger" href="del.php?id='.$id.'&i='.$i.'" ><span class="glyphicon glyphicon-trash">';
            echo '</span> Delete </a> &nbsp<button data-toggle="modal" data-target="#myModal2" class="btn btn-info">';
            echo '<span class="glyphicon glyphicon-pencil"></span> Edit Status</a>';
          echo '</td>';

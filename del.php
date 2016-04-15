@@ -9,11 +9,13 @@ include 'connect.php';
     //echo "Error: " . $sql . "<br>" . $conn->er
    
 
-    $id = $_GET['id'];
+    $id = $_GET['i'];
+    $hub = $_GET['id'];
         $query = "DELETE FROM sensor_list WHERE Sensor_name='".$id."'";
         echo $query;
         if ($conn->query($query) === TRUE) {
         	echo 'ok';
+        	 header("Location: sensor.php?id=".$hub);
         }
         
     exit; // finish execution since we only need the "ok" or "err" answers from the server.

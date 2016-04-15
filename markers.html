@@ -25,12 +25,13 @@ include 'connect.php';
       map = new GMaps({
         el: '#map',
         lat: 37.890998840332,
-        lng: -122.446998596191
+        lng: -122.446998596191,
+        zoom: 4
       });
       map.addMarker({
         lat: 37.890998840332,
         lng: -122.446998596191,
-        title: 'Lima',
+        title: '',
         details: {
           database_id: 42,
           author: 'HPNeo'

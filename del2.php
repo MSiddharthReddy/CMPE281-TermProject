@@ -14,8 +14,9 @@ include 'connect.php';
         echo $query;
         if ($conn->query($query) === TRUE) {
         	echo 'ok';
+        	 header("Location: untitled.php");
         }
-        
+    
     exit; // finish execution since we only need the "ok" or "err" answers from the server.
 
 ?>
