@@ -40,7 +40,7 @@
     <thead>
       <tr >
         <th>Sensor Name</th>
-        <th>Sensor ID</th>
+        <th>Sensor Type</th>
         <th>Status</th>
         <th>Manage</th>
       </tr>
@@ -66,11 +66,12 @@
 
         $a = $conn->query($r);
           while( $row = mysqli_fetch_array($a) ){
-            echo "<tr><td>" . $row['Sensor_name'] . "</td><td>" . $row['Sensor_id'] . "</td><td>" . $row['status'] . "</td>"; 
-            $i = $row['Sensor_name']; //$row['index'] the index here is a field name
-           echo '<td> <a class="btn btn-danger" href="del.php?id='.$id.'&i='.$i.'" ><span class="glyphicon glyphicon-trash">';
-           echo '</span> Delete </a> &nbsp<button data-toggle="modal" data-target="#myModal2" class="btn btn-info">';
-           echo '<span class="glyphicon glyphicon-pencil"></span> Edit Status</a>';
+            echo "<tr><td>" . $row['Sensor_name'] . "</td><td>" . $row['type'] . "</td><td>" . $row['status'] . "</td>"; 
+            $i = $row['Sensor_id']; //$row['index'] the index here is a field name
+           $stat=$row['status'];
+           echo '<td> <a class="btn btn-danger" href="del.php?id='.$id.'&i='.$i.'"><span class="glyphicon glyphicon-trash">';
+           echo '</span> Delete </a> &nbsp<a href="change.php?id='.$id.'&i='.$i.'&stat='.$stat.'" class="btn btn-info">';
+           echo '<span class="glyphicon glyphicon-pencil"></span>Change</a>';
          echo '</td>';
         echo '</tr>';
            }
@@ -105,9 +106,18 @@
    <input type="email" class="form-control" name="format" placeholder="Data Format"><br>
      <label for="hub">Select Existing Sensor hub</label>
     <input type="email" class="form-control" name="hub" placeholder="Select Existing Sensor hub"><br>
-  
+    
+    <label for="api">Sensor Type</label>
+    <select class="form-control" name="status">
+      <option value="Wind Speed">Wind Speed</option>
+      <option value="Wind Direction">Wind Direction</option>
+       <option value="Tidal Speed">Tidal Speed</option>
+    </select>
     <label for="api">Sensor Status</label>
-    <input type="email" class="form-control" name="api" placeholder="API Token"><br>
+    <select class="form-control" name="api">
+      <option value="ON">ON</option>
+      <option value="OFF">OFF</option>
+    </select>
     <p class="help-block">Please Provide the Correct Information so that We can MAP your Sensor correctly.</p>
   <div style="text-align: center;">
   <button type="submit" class="btn btn-success">Submit</button>
@@ -133,7 +143,7 @@
   <div class="col-sm-8">
     <label for="sensorname">New Status</label>
     <input type="email" class="form-control" id="sensorname" placeholder="Sensor Name"><br>
-    <input id="id" value=''><br>
+    <!--<input id="id" value=''><br> -->
  
   <div style="text-align: center;">
   <button type="submit" class="btn btn-success">Submit</button>

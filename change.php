@@ -11,11 +11,17 @@ include 'connect.php';
 
     $id = $_GET['i'];
     $hub = $_GET['id'];
-        $query = "DELETE FROM sensor_list WHERE Sensor_id='".$id."'";
+    $stat=$_GET['stat'];
+    if($stat=='ON')
+        $query = "UPDATE sensor_list set status='OFF' WHERE Sensor_id='".$id."' and hub_id = '".$hub."'";
+    else
+        $query = "UPDATE sensor_list set status='ON' WHERE Sensor_id='".$id."' and hub_id = '".$hub."'";
+
         echo $query;
         if ($conn->query($query) === TRUE) {
         	echo 'ok';
-        	 header("Location: sensor.php?id=".$hub);
+
+        	header("Location: sensor.php?id=".$hub);
         }
         
     exit; // finish execution since we only need the "ok" or "err" answers from the server.

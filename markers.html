@@ -24,28 +24,11 @@ include 'connect.php';
     $(document).ready(function(){
       map = new GMaps({
         el: '#map',
-        lat: 37.890998840332,
-        lng: -122.446998596191,
+        lat: 36,
+        lng: -122, 
         zoom: 4
       });
-      map.addMarker({
-        lat: 37.890998840332,
-        lng: -122.446998596191,
-        title: '',
-        details: {
-          database_id: 42,
-          author: 'HPNeo'
-        },
-        click: function(e){
-          if(console.log)
-            console.log(e);
-          alert('You clicked in this marker');
-        },
-        mouseover: function(e){
-          if(console.log)
-            console.log(e);
-        }
-      });
+     
        $.ajax({                                      
       url: 'un.php',                  //the script to call to get data          
       data: "",                        //you can insert url argumnets here to pass to api.php
@@ -57,10 +40,23 @@ include 'connect.php';
       
         $.each(data, function(k, v) {
     /// do stuff
+     
           map.addMarker({
           lat: v.lat,
           lng: v.lon,
-          title: v.sensor
+          title: v.sensor,
+          se: v.hub,
+          click: function(e){
+          if(console.log)
+            console.log(e); 
+          var newURLString = "sensor.php" + 
+            "?id=" + v.hub;
+          window.location.href = newURLString;
+        },
+        mouseover: function(e){
+          if(console.log)
+            console.log(e);
+        }         
            });
          }); 
 

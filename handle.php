@@ -10,8 +10,8 @@ $api = $_GET["api"];
 $stat = $_GET["status"];
 $freq = $_GET["freq"];
 
-$sql = "INSERT INTO sensor_list (Sensor_name, Sensor_id, lon, lat, hub_id,status)
-VALUES ('$sensor', '$fromat', '$desc', '$url ', '$hub', '$api')";
+$sql = "INSERT INTO sensor_list (Sensor_name, Sensor_id, lon, lat, hub_id,status, type)
+VALUES ('$sensor', '$fromat', '$desc', '$url ', '$hub', '$api','$stat')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";

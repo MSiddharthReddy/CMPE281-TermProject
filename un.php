@@ -24,8 +24,9 @@ foreach ($a as $row) {
 	$lat = $row['lat'];
 	$lon = $row['lon'];
 	$name = $row['name'];
+	$id = $row['id'];
 
-	$rows[] =  array("lat" => $lat, "lon" => $lon, "sensor" => $name );
+	$rows[] =  array("lat" => $lat, "lon" => $lon, "sensor" => $name, "hub" => $id  );
 	# code...
 }
 header('Content-type:application/json');
